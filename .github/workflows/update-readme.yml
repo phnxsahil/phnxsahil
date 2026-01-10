@@ -65,7 +65,7 @@ jobs:
           HOUR=$(TZ='Asia/Kolkata' date +%H)
           TIME=$(TZ='Asia/Kolkata' date +"%H:%M")
           
-          # Determine greeting
+          # Determine greeting based on hour
           if [ $HOUR -lt 12 ]; then
             GREETING="Good morning"
           elif [ $HOUR -lt 17 ]; then
@@ -76,13 +76,20 @@ jobs:
           
           echo "GREETING=$GREETING" >> $GITHUB_OUTPUT
           echo "TIME=$TIME" >> $GITHUB_OUTPUT
+          echo "HOUR=$HOUR" >> $GITHUB_OUTPUT
           
-      - name: Update chat.svg
+      - name: Update chat.svg and Generate Isometric Graph
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Update the SVG with dynamic data
-          sed -i "s/Good [a-z]*!/${{ steps.time.outputs.GREETING }}!/g" chat.svg
+          # Update greeting and time in chat.svg
+          sed -i "s/Good [a-z]*!/\${{ steps.time.outputs.GREETING }}!/g" chat.svg
+          sed -i "s/The time is [0-9][0-9]:[0-9][0-9]/The time is ${{ steps.time.outputs.TIME }}/g" chat.svg
           sed -i "s/supposed to be [0-9]*°C/supposed to be ${{ steps.weather.outputs.TEMP }}°C/g" chat.svg
           sed -i "s/and [🌤️☀️☁️🌧️❄️] today/and ${{ steps.weather.outputs.WEATHER_EMOJI }} today/g" chat.svg
+          
+          # Generate real isometric graph
+          python generate_isometric.py --username phnxsahil --use-real-data --token "${{ secrets.GITHUB_TOKEN }}"
           
       - name: Commit and push if changed
         run: |
