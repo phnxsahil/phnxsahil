@@ -58,20 +58,20 @@
       100% { opacity: 0; }
     }
     
-    /* Typing indicators appear before messages */
-    .typing-indicator-1 { animation: typingAppear 2.5s ease-out 0s forwards; }
-    .typing-indicator-2 { animation: typingAppear 2.5s ease-out 3.5s forwards; }
-    .typing-indicator-3 { animation: typingAppear 2.5s ease-out 7s forwards; }
-    .typing-indicator-4 { animation: typingAppear 2.5s ease-out 10.5s forwards; }
+    /* Typing indicators appear before messages - faster */
+    .typing-indicator-1 { animation: typingAppear 1.2s ease-out 0s forwards; }
+    .typing-indicator-2 { animation: typingAppear 1.2s ease-out 1.8s forwards; }
+    .typing-indicator-3 { animation: typingAppear 1.2s ease-out 3.6s forwards; }
+    .typing-indicator-4 { animation: typingAppear 1.2s ease-out 5.4s forwards; }
     
-    /* Messages appear after typing */
-    .msg-1 { animation: fadeSlide 0.8s ease-out 2.5s both; }
-    .msg-2 { animation: fadeSlide 0.8s ease-out 6s both; }
-    .msg-3 { animation: fadeSlide 0.8s ease-out 9.5s both; }
-    .msg-4 { animation: fadeSlide 0.8s ease-out 13s both; }
+    /* Messages appear after typing - faster */
+    .msg-1 { animation: fadeSlide 0.6s ease-out 1.2s both; }
+    .msg-2 { animation: fadeSlide 0.6s ease-out 3s both; }
+    .msg-3 { animation: fadeSlide 0.6s ease-out 4.8s both; }
+    .msg-4 { animation: fadeSlide 0.6s ease-out 6.6s both; }
     
-    /* Embedded image fade in */
-    .github-graph { animation: fadeSlide 1s ease-out 14s both; }
+    /* Embedded image fade in - faster */
+    .github-graph { animation: fadeSlide 0.8s ease-out 7.5s both; }
   </style>
   
   <!-- Typing Indicator 1 -->
@@ -98,10 +98,10 @@
   
   <!-- Message 2: Location and role -->
   <g class="msg-2">
-    <rect class="bubble" x="10" y="84" width="480" height="66" rx="18"/>
+    <rect class="bubble" x="10" y="84" width="520" height="66" rx="18"/>
     <text x="25" y="112" font-size="15.5">
-      <tspan x="25" dy="0">I live in India where it's supposed to be 20:17 (UTC +5:30)</tspan>
-      <tspan x="25" dy="22">today.</tspan>
+      <tspan x="25" dy="0">I live in Dehradun, India where it's supposed to be 20:24</tspan>
+      <tspan x="25" dy="22">(UTC +5:30) today.</tspan>
     </text>
   </g>
   
