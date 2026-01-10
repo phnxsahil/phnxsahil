@@ -1,168 +1,171 @@
-<svg width="550" height="820" viewBox="0 0 550 820" xmlns="http://www.w3.org/2000/svg">
+<svg width="550" height="900" viewBox="0 0 550 900" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <!-- Gradient for premium bubbles -->
-    <linearGradient id="bubbleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f0f0f2;stop-opacity:1" />
+    <linearGradient id="bubbleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e9e9eb;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#e9e9eb;stop-opacity:1" />
     </linearGradient>
     
-    <linearGradient id="bubbleGradientDark" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="bubbleGradientDark" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" style="stop-color:#3b3b3d;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2d2d2f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b3b3d;stop-opacity:1" />
     </linearGradient>
-    
-    <!-- Glow effect -->
-    <filter id="glow">
-      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
   </defs>
   
   <style>
     text {
       fill: #242424;
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-      letter-spacing: -0.02em;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      letter-spacing: -0.01em;
     }
     
     @media (prefers-color-scheme: dark) {
       .bubble { fill: url(#bubbleGradientDark) !important; }
       text { fill: #dcdcdc !important; }
       .link { fill: #0c82f9 !important; }
-      .emoji { filter: brightness(1.1); }
-      .time-badge { fill: #1f6feb !important; }
+      .typing-dot { fill: #8b8b8d !important; }
     }
     
     .bubble { 
       fill: url(#bubbleGradient);
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.08));
     }
     
     .link { 
       fill: #0079ff;
-      font-weight: 600;
     }
     
-    .time-badge {
-      fill: #0079ff;
-      opacity: 0.9;
+    .typing-dot {
+      fill: #c7c7cc;
     }
     
-    /* Typing indicator animation */
+    /* Typing indicator animation - visible and slower */
     @keyframes typing {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-3px); }
+      0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-4px); }
     }
     
-    .typing circle:nth-child(1) { animation: typing 1.4s infinite; }
-    .typing circle:nth-child(2) { animation: typing 1.4s infinite 0.2s; }
-    .typing circle:nth-child(3) { animation: typing 1.4s infinite 0.4s; }
+    .typing-1 { animation: typing 1.8s infinite 0s; }
+    .typing-2 { animation: typing 1.8s infinite 0.3s; }
+    .typing-3 { animation: typing 1.8s infinite 0.6s; }
     
-    /* Message animations with bounce */
-    @keyframes slideIn {
-      0% { opacity: 0; transform: translateY(15px) scale(0.95); }
-      60% { transform: translateY(-2px) scale(1.01); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+    /* Slower, more sophisticated message animations */
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     
-    .msg-1 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both; }
-    .msg-2 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both; }
-    .msg-3 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s both; }
-    .msg-4 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.1s both; }
-    .msg-5 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.7s both; }
-    .msg-6 { animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 3.3s both; }
-    
-    /* Pulse animation for badge */
-    @keyframes pulse {
-      0%, 100% { opacity: 0.9; }
-      50% { opacity: 1; }
+    @keyframes typingAppear {
+      0%, 99% { opacity: 1; }
+      100% { opacity: 0; }
     }
     
-    .time-badge { animation: pulse 2s ease-in-out infinite; }
+    /* Typing indicators appear before messages */
+    .typing-indicator-1 { animation: typingAppear 2.5s ease-out 0s forwards; }
+    .typing-indicator-2 { animation: typingAppear 2.5s ease-out 3.5s forwards; }
+    .typing-indicator-3 { animation: typingAppear 2.5s ease-out 7s forwards; }
+    .typing-indicator-4 { animation: typingAppear 2.5s ease-out 10.5s forwards; }
+    
+    /* Messages appear after typing */
+    .msg-1 { animation: fadeSlide 0.8s ease-out 2.5s both; }
+    .msg-2 { animation: fadeSlide 0.8s ease-out 6s both; }
+    .msg-3 { animation: fadeSlide 0.8s ease-out 9.5s both; }
+    .msg-4 { animation: fadeSlide 0.8s ease-out 13s both; }
+    
+    /* Embedded image fade in */
+    .github-graph { animation: fadeSlide 1s ease-out 14s both; }
   </style>
   
-  <!-- Message 1: Greeting with time -->
+  <!-- Typing Indicator 1 -->
+  <g class="typing-indicator-1" opacity="0">
+    <rect class="bubble" x="10" y="20" width="75" height="44" rx="18"/>
+    <circle class="typing-dot typing-1" cx="30" cy="42" r="5"/>
+    <circle class="typing-dot typing-2" cx="48" cy="42" r="5"/>
+    <circle class="typing-dot typing-3" cx="66" cy="42" r="5"/>
+  </g>
+  
+  <!-- Message 1: Simple greeting -->
   <g class="msg-1">
-    <rect class="bubble" x="10" y="20" width="320" height="70" rx="20"/>
-    <text x="25" y="50" font-size="17" font-weight="600">
-      <tspan>Hey there! 👋 I'm Sahil</tspan>
-    </text>
-    <rect class="time-badge" x="25" y="60" width="140" height="22" rx="11"/>
-    <text x="35" y="75" font-size="11" fill="white" font-weight="500">
-      🌍 Building from India
-    </text>
+    <rect class="bubble" x="10" y="20" width="240" height="44" rx="18"/>
+    <text x="25" y="48" font-size="16">Hi, I'm Sahil 👋</text>
   </g>
   
-  <!-- Message 2: Bio -->
+  <!-- Typing Indicator 2 -->
+  <g class="typing-indicator-2" opacity="0">
+    <rect class="bubble" x="10" y="84" width="75" height="44" rx="18"/>
+    <circle class="typing-dot typing-1" cx="30" cy="106" r="5"/>
+    <circle class="typing-dot typing-2" cx="48" cy="106" r="5"/>
+    <circle class="typing-dot typing-3" cx="66" cy="106" r="5"/>
+  </g>
+  
+  <!-- Message 2: Location and role -->
   <g class="msg-2">
-    <rect class="bubble" x="10" y="110" width="480" height="100" rx="20"/>
-    <text x="25" y="140" font-size="15.5">
-      <tspan x="25" dy="0">Full-stack Developer &amp; Designer passionate about</tspan>
-      <tspan x="25" dy="22">crafting beautiful, scalable web experiences that</tspan>
-      <tspan x="25" dy="22">users love. ✨</tspan>
+    <rect class="bubble" x="10" y="84" width="480" height="66" rx="18"/>
+    <text x="25" y="112" font-size="15.5">
+      <tspan x="25" dy="0">I live in India where it's supposed to be 20:17 (UTC +5:30)</tspan>
+      <tspan x="25" dy="22">today.</tspan>
     </text>
   </g>
   
-  <!-- Message 3: Stash Project (Featured) -->
+  <!-- Typing Indicator 3 -->
+  <g class="typing-indicator-3" opacity="0">
+    <rect class="bubble" x="10" y="170" width="75" height="44" rx="18"/>
+    <circle class="typing-dot typing-1" cx="30" cy="192" r="5"/>
+    <circle class="typing-dot typing-2" cx="48" cy="192" r="5"/>
+    <circle class="typing-dot typing-3" cx="66" cy="192" r="5"/>
+  </g>
+  
+  <!-- Message 3: About -->
   <g class="msg-3">
-    <rect class="bubble" x="10" y="230" width="530" height="200" rx="20"/>
-    <text x="25" y="260" font-size="16" font-weight="700">
-      <tspan>🎵 Stash - Featured Project</tspan>
-    </text>
-    <rect x="25" y="270" width="60" height="20" rx="10" fill="#10b981" opacity="0.15"/>
-    <text x="32" y="284" font-size="11" fill="#10b981" font-weight="600">LIVE</text>
-    
-    <text x="25" y="310" font-size="14.5" line-height="1.6">
-      <tspan x="25" dy="0">A production-ready Spotify companion with</tspan>
-      <tspan x="25" dy="21">"Zero-Failure" architecture. Seamlessly manage</tspan>
-      <tspan x="25" dy="21">your music library with enterprise-grade security.</tspan>
-    </text>
-    
-    <text x="25" y="390" font-size="13" opacity="0.8">
-      <tspan x="25" dy="0">⚡ React • TypeScript • Supabase • FastAPI</tspan>
-      <tspan x="25" dy="18">🔐 RLS Security • OAuth • PWA Ready</tspan>
+    <rect class="bubble" x="10" y="170" width="520" height="88" rx="18"/>
+    <text x="25" y="198" font-size="15.5">
+      <tspan x="25" dy="0">I'm a full-stack developer and designer. I used to work on</tspan>
+      <tspan x="25" dy="22">Stash, but I've been building scalable web apps for over</tspan>
+      <tspan x="25" dy="22">2 years now.</tspan>
     </text>
   </g>
   
-  <!-- Message 4: Tech Stack -->
+  <!-- Typing Indicator 4 -->
+  <g class="typing-indicator-4" opacity="0">
+    <rect class="bubble" x="10" y="278" width="75" height="44" rx="18"/>
+    <circle class="typing-dot typing-1" cx="30" cy="300" r="5"/>
+    <circle class="typing-dot typing-2" cx="48" cy="300" r="5"/>
+    <circle class="typing-dot typing-3" cx="66" cy="300" r="5"/>
+  </g>
+  
+  <!-- Message 4: Featured project -->
   <g class="msg-4">
-    <rect class="bubble" x="10" y="450" width="500" height="130" rx="20"/>
-    <text x="25" y="480" font-size="15" font-weight="600">
-      <tspan>💻 Tech Arsenal</tspan>
-    </text>
-    <text x="25" y="510" font-size="14">
-      <tspan x="25" dy="0" font-weight="600">Frontend:</tspan>
-      <tspan x="110" dy="0">React • TypeScript • Tailwind CSS</tspan>
-      <tspan x="25" dy="22" font-weight="600">Backend:</tspan>
-      <tspan x="110" dy="0">Node.js • Python • FastAPI</tspan>
-      <tspan x="25" dy="22" font-weight="600">Database:</tspan>
-      <tspan x="110" dy="0">Supabase • PostgreSQL</tspan>
-      <tspan x="25" dy="22" font-weight="600">Design:</tspan>
-      <tspan x="110" dy="0">Figma • UI/UX Principles</tspan>
+    <rect class="bubble" x="10" y="278" width="530" height="110" rx="18"/>
+    <text x="25" y="306" font-size="15.5">
+      <tspan x="25" dy="0">My favorite project is Stash. It's a Spotify companion app</tspan>
+      <tspan x="25" dy="22">with "Zero-Failure" architecture that shows your music library</tspan>
+      <tspan x="25" dy="22">like this:</tspan>
     </text>
   </g>
   
-  <!-- Message 5: What I'm up to -->
-  <g class="msg-5">
-    <rect class="bubble" x="10" y="600" width="460" height="80" rx="20"/>
-    <text x="25" y="630" font-size="15">
-      <tspan x="25" dy="0">🚀 Currently building scalable web apps and</tspan>
-      <tspan x="25" dy="22">exploring cutting-edge tech stacks.</tspan>
+  <!-- Embedded GitHub Contribution Graph -->
+  <g class="github-graph">
+    <image 
+      x="25" 
+      y="408" 
+      width="500" 
+      height="180"
+      href="https://ghchart.rshah.org/0079ff/phnxsahil"
+      preserveAspectRatio="xMidYMid meet"
+    />
+    
+    <!-- Stats below graph -->
+    <text x="25" y="610" font-size="13" opacity="0.7">
+      <tspan x="25" dy="0">Contributions</tspan>
+      <tspan x="150" dy="0">Best day</tspan>
+      <tspan x="280" dy="0">Average / day</tspan>
+      <tspan x="420" dy="0">Current streak</tspan>
     </text>
   </g>
   
-  <!-- Message 6: CTA -->
-  <g class="msg-6">
-    <rect class="bubble" x="10" y="700" width="420" height="80" rx="20"/>
-    <text x="25" y="730" font-size="15">
-      <tspan x="25" dy="0">Let's collaborate and build something</tspan>
-      <tspan x="25" dy="22">amazing together! 🤝</tspan>
-    </text>
-    <text x="25" y="770" class="link" font-size="14">
-      <tspan>→ Check out my repositories</tspan>
+  <!-- Link to Bluesky/Social -->
+  <g class="github-graph">
+    <rect class="bubble" x="10" y="640" width="380" height="44" rx="18"/>
+    <text x="25" y="668" font-size="15" class="link">
+      <tspan>→ Check out my work on GitHub</tspan>
     </text>
   </g>
 </svg>
