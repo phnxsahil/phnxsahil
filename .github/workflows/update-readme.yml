@@ -1,0 +1,93 @@
+name: Update README Stats
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch: # Allow manual trigger
+  push:
+    branches:
+      - main
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Fetch GitHub Stats
+        id: github_stats
+        run: |
+          # Fetch contribution stats from GitHub API
+          RESPONSE=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/users/phnxsahil")
+          
+          # Parse basic stats
+          PUBLIC_REPOS=$(echo $RESPONSE | jq -r '.public_repos')
+          FOLLOWERS=$(echo $RESPONSE | jq -r '.followers')
+          
+          # Fetch contribution data (simplified - you'd need GitHub GraphQL for full stats)
+          echo "PUBLIC_REPOS=$PUBLIC_REPOS" >> $GITHUB_OUTPUT
+          echo "FOLLOWERS=$FOLLOWERS" >> $GITHUB_OUTPUT
+          
+      - name: Fetch Weather Data
+        id: weather
+        run: |
+          # Fetch weather for Dehradun using OpenWeatherMap API
+          # Note: You'll need to add OPENWEATHER_API_KEY to your GitHub secrets
+          WEATHER_RESPONSE=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=Dehradun,IN&units=metric&appid=${{ secrets.OPENWEATHER_API_KEY }}")
+          
+          TEMP=$(echo $WEATHER_RESPONSE | jq -r '.main.temp' | cut -d'.' -f1)
+          WEATHER=$(echo $WEATHER_RESPONSE | jq -r '.weather[0].main')
+          
+          # Map weather to emoji
+          case $WEATHER in
+            "Clear") EMOJI="☀️" ;;
+            "Clouds") EMOJI="☁️" ;;
+            "Rain") EMOJI="🌧️" ;;
+            "Snow") EMOJI="❄️" ;;
+            *) EMOJI="🌤️" ;;
+          esac
+          
+          echo "TEMP=$TEMP" >> $GITHUB_OUTPUT
+          echo "WEATHER_EMOJI=$EMOJI" >> $GITHUB_OUTPUT
+          
+      - name: Get Current Time and Greeting
+        id: time
+        run: |
+          # Get current time in IST
+          HOUR=$(TZ='Asia/Kolkata' date +%H)
+          TIME=$(TZ='Asia/Kolkata' date +"%H:%M")
+          
+          # Determine greeting
+          if [ $HOUR -lt 12 ]; then
+            GREETING="Good morning"
+          elif [ $HOUR -lt 17 ]; then
+            GREETING="Good afternoon"
+          else
+            GREETING="Good evening"
+          fi
+          
+          echo "GREETING=$GREETING" >> $GITHUB_OUTPUT
+          echo "TIME=$TIME" >> $GITHUB_OUTPUT
+          
+      - name: Update chat.svg
+        run: |
+          # Update the SVG with dynamic data
+          sed -i "s/Good [a-z]*!/${{ steps.time.outputs.GREETING }}!/g" chat.svg
+          sed -i "s/supposed to be [0-9]*°C/supposed to be ${{ steps.weather.outputs.TEMP }}°C/g" chat.svg
+          sed -i "s/and [🌤️☀️☁️🌧️❄️] today/and ${{ steps.weather.outputs.WEATHER_EMOJI }} today/g" chat.svg
+          
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add chat.svg
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-update stats [$(date +'%Y-%m-%d %H:%M')]" && git push)
