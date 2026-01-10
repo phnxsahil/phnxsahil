@@ -41,8 +41,7 @@ jobs:
         id: weather
         run: |
           # Fetch weather for Dehradun using OpenWeatherMap API
-          # Note: You'll need to add OPENWEATHER_API_KEY to your GitHub secrets
-          WEATHER_RESPONSE=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=Dehradun,IN&units=metric&appid=${{ secrets.OPENWEATHER_API_KEY }}")
+          WEATHER_RESPONSE=$(curl -s "https://api.openweathermap.org/data/2.5/weather?q=Dehradun,IN&units=metric&appid=d54052867064ee55325366db548f7dca")
           
           TEMP=$(echo $WEATHER_RESPONSE | jq -r '.main.temp' | cut -d'.' -f1)
           WEATHER=$(echo $WEATHER_RESPONSE | jq -r '.weather[0].main')

@@ -141,19 +141,29 @@
     </text>
   </g>
   
-  <!-- Real-time GitHub Contribution Graph -->
+  <!-- Isometric 3D Building Block Contribution Graph (like Jason Long's) -->
   <g class="github-graph">
+    <!-- Isometric contribution visualization -->
     <image 
-      x="25" 
+      x="15" 
       y="408" 
-      width="500" 
-      height="170"
-      href="https://ghchart.rshah.org/0079ff/phnxsahil"
+      width="520" 
+      height="200"
+      href="https://skyline.github.com/phnxsahil/2025.png"
       preserveAspectRatio="xMidYMid meet"
     />
     
+    <!-- Fallback: Standard contribution graph with isometric-style presentation -->
+    <foreignObject x="15" y="408" width="520" height="200">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;">
+        <img src="https://ghchart.rshah.org/0079ff/phnxsahil" 
+             alt="GitHub Contributions" 
+             style="width:100%;height:auto;max-height:180px;object-fit:contain;"/>
+      </div>
+    </foreignObject>
+    
     <!-- Streaks section with real-time data -->
-    <g transform="translate(25, 600)">
+    <g transform="translate(25, 630)">
       <text font-size="12.5" opacity="0.65">
         <tspan x="0" dy="0">Streaks</tspan>
       </text>
