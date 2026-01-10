@@ -37,17 +37,17 @@
       fill: #c7c7cc;
     }
     
-    /* Snappy typing indicator */
+    /* Fast typing indicator */
     @keyframes typing {
       0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
       30% { opacity: 0.85; transform: translateY(-2px); }
     }
     
-    .typing-1 { animation: typing 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite 0s; }
-    .typing-2 { animation: typing 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.2s; }
-    .typing-3 { animation: typing 1.2s cubic-bezier(0.4, 0, 0.2, 1) infinite 0.4s; }
+    .typing-1 { animation: typing 1s ease-in-out infinite 0s; }
+    .typing-2 { animation: typing 1s ease-in-out infinite 0.15s; }
+    .typing-3 { animation: typing 1s ease-in-out infinite 0.3s; }
     
-    /* Snappy fade animations */
+    /* Fast fade animations */
     @keyframes fadeSlide {
       0% { opacity: 0; transform: translateY(6px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -58,24 +58,24 @@
       100% { opacity: 0; }
     }
     
-    /* Snappy timing - 1.6s intervals */
-    .typing-indicator-1 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0s forwards; }
-    .typing-indicator-2 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards; }
-    .typing-indicator-3 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 4s forwards; }
-    .typing-indicator-4 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 6s forwards; }
-    .typing-indicator-5 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 8s forwards; }
-    .typing-indicator-6 { animation: typingAppear 1.6s cubic-bezier(0.4, 0, 0.2, 1) 10s forwards; }
+    /* Super fast timing - 1s intervals */
+    .typing-indicator-1 { animation: typingAppear 1s ease-in-out 0s forwards; }
+    .typing-indicator-2 { animation: typingAppear 1s ease-in-out 1.2s forwards; }
+    .typing-indicator-3 { animation: typingAppear 1s ease-in-out 2.4s forwards; }
+    .typing-indicator-4 { animation: typingAppear 1s ease-in-out 3.6s forwards; }
+    .typing-indicator-5 { animation: typingAppear 1s ease-in-out 4.8s forwards; }
+    .typing-indicator-6 { animation: typingAppear 1s ease-in-out 6s forwards; }
     
-    /* Messages - fast & smooth */
-    .msg-1 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 1.6s both; }
-    .msg-2 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 3.6s both; }
-    .msg-3 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 5.6s both; }
-    .msg-4 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 7.6s both; }
-    .msg-5 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 9.6s both; }
-    .msg-6 { animation: fadeSlide 0.5s cubic-bezier(0.4, 0, 0.2, 1) 11.6s both; }
+    /* Messages - super fast */
+    .msg-1 { animation: fadeSlide 0.4s ease-in-out 1s both; }
+    .msg-2 { animation: fadeSlide 0.4s ease-in-out 2.2s both; }
+    .msg-3 { animation: fadeSlide 0.4s ease-in-out 3.4s both; }
+    .msg-4 { animation: fadeSlide 0.4s ease-in-out 4.6s both; }
+    .msg-5 { animation: fadeSlide 0.4s ease-in-out 5.8s both; }
+    .msg-6 { animation: fadeSlide 0.4s ease-in-out 7s both; }
     
-    /* Stats appears last */
-    .github-graph { animation: fadeSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) 12.5s both; }
+    /* Stats appears at 7.5s */
+    .github-graph { animation: fadeSlide 0.5s ease-in-out 7.5s both; }
   </style>
   
   <!-- Typing Indicator 1 -->
@@ -187,7 +187,6 @@
       width="530" 
       height="195"
       xlink:href="https://github-readme-stats.vercel.app/api?username=phnxsahil&amp;show_icons=true&amp;theme=transparent&amp;hide_border=true&amp;title_color=0079ff&amp;text_color=242424&amp;icon_color=0079ff&amp;hide=stars"
-      href="https://github-readme-stats.vercel.app/api?username=phnxsahil&amp;show_icons=true&amp;theme=transparent&amp;hide_border=true&amp;title_color=0079ff&amp;text_color=242424&amp;icon_color=0079ff&amp;hide=stars"
       preserveAspectRatio="xMidYMid meet"
     />
   </g>
