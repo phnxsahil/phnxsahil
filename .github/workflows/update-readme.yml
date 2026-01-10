@@ -78,7 +78,7 @@ jobs:
           echo "TIME=$TIME" >> $GITHUB_OUTPUT
           echo "HOUR=$HOUR" >> $GITHUB_OUTPUT
           
-      - name: Update chat.svg and Generate Isometric Graph
+      - name: Update chat.svg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -87,9 +87,6 @@ jobs:
           sed -i "s/The time is [0-9][0-9]:[0-9][0-9]/The time is ${{ steps.time.outputs.TIME }}/g" chat.svg
           sed -i "s/supposed to be [0-9]*°C/supposed to be ${{ steps.weather.outputs.TEMP }}°C/g" chat.svg
           sed -i "s/and [🌤️☀️☁️🌧️❄️] today/and ${{ steps.weather.outputs.WEATHER_EMOJI }} today/g" chat.svg
-          
-          # Generate real isometric graph
-          python generate_isometric.py --username phnxsahil --use-real-data --token "${{ secrets.GITHUB_TOKEN }}"
           
       - name: Commit and push if changed
         run: |
