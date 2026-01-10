@@ -141,17 +141,26 @@
     </text>
   </g>
   
-  <!-- Colorful GitHub Contribution Graph with Real Stats -->
+  <!-- Isometric-Style GitHub Contribution Graph -->
   <g class="github-graph">
-    <!-- Main contribution graph - colorful and vibrant -->
+    <!-- 3D Isometric contribution visualization -->
     <image 
       x="15" 
       y="408" 
       width="520" 
       height="165"
-      href="https://github-readme-activity-graph.vercel.app/graph?username=phnxsahil&amp;theme=react-dark&amp;hide_border=true&amp;area=true&amp;custom_title=Contribution%20Graph"
+      href="https://github-readme-activity-graph.vercel.app/graph?username=phnxsahil&amp;theme=github-compact&amp;hide_border=true&amp;area=true&amp;custom_title=Contributions&amp;point=0079ff&amp;line=0079ff&amp;color=0079ff"
       preserveAspectRatio="xMidYMid meet"
     />
+    
+    <!-- Alternative: 3D GitHub Contribution Calendar -->
+    <foreignObject x="15" y="408" width="520" height="165" style="display:none;">
+      <div xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;">
+        <img src="https://ghchart.rshah.org/0079ff/phnxsahil" 
+             alt="GitHub Contributions" 
+             style="width:100%;height:auto;transform:perspective(600px) rotateX(15deg);"/>
+      </div>
+    </foreignObject>
     
     <!-- Streaks section with real-time data -->
     <g transform="translate(25, 595)">
