@@ -96,7 +96,7 @@
     <rect class="bubble" x="10" y="84" width="530" height="88" rx="18"/>
     <text x="25" y="112" font-size="15.5">
       <tspan x="25" dy="0">I live in Dehradun, India where it's supposed to be 11°C</tspan>
-      <tspan x="25" dy="22">and ☀️ today. The time is 00:16 (UTC +5:30).</tspan>
+      <tspan x="25" dy="22">and ☀️ today. The time is 07:20 (UTC +5:30).</tspan>
     </text>
   </g>
   
